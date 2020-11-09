@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Arethmetic
 {
-    public class MyVector<T>
+    public class MyVector<T>where T:class
     {
         #region Properties
 
@@ -48,7 +49,7 @@ namespace Arethmetic
 
         #endregion
 
-        #region Private
+        #region 拷贝
 
         void CopyFrom(T[] myVector, int start, int end)
         {
@@ -70,12 +71,90 @@ namespace Arethmetic
                 _size++;
             }
 
+        }
 
+        #endregion
+
+        #region 循秩
+
+        public T this[int index]
+        {
+            get => _elements[index];
+            set => _elements[index] = value;
         }
 
 
         #endregion
 
+        #region 扩容,固定扩容时间复杂度n~2，加倍扩容时间复杂度n
+
+        void Expand()
+        {
+            if (_size == _capasity)
+            {
+                var cpst = _capasity * 2;
+
+                var tmp = new T[cpst];
+                _size = 0;
+                while (_size<_capasity)
+                {
+                    tmp[_size] = _elements[_size];
+                }
+                _elements = tmp;
+                _capasity = cpst;
+            }
+        }
+
+
+        #endregion
+
+        #region 插入，检查扩容，由最后一个依次向前，元素向后移动一位
+
+        void Insert(int index,T tmp)
+        {
+            Expand();
+            for (int i = _size; i > index; i--)
+            {
+                _elements[i] = _elements[i-1];
+            }
+            _elements[index] = tmp;
+        }
+
+
+        #endregion
+
+        #region 区间删除
+
+        void Remove(int low, int hi)
+        {
+            while (hi < _size)
+            {
+                _elements[hi] = _elements[low];
+                hi++;
+                low++;
+            }
+        }
+
+
+        #endregion
+
+        #region 区间查找
+
+        int Find(T instance, int low, int high)
+        {
+            high--;
+            while (high<low)
+            {
+                if (instance == _elements[high])
+                {
+                    return high;
+                }
+            }
+            return high;
+        }
+
+
+        #endregion
 
     }
 }
