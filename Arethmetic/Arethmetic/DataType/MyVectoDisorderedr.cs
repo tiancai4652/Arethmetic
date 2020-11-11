@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Arethmetic
 {
-    public class MyVector<T>where T:class
+    public class MyVectoDisorderedr<T>where T:class
     {
+
         #region Properties
 
         /// <summary>
@@ -35,14 +36,14 @@ namespace Arethmetic
 
         #region Constructure
 
-        public MyVector(int c = _defaultSize)
+        public MyVectoDisorderedr(int c = _defaultSize)
         {
             _elements = new T[c];
             _capasity = c;
             _size = 0;
         }
 
-        public MyVector(T[] myVector, int start, int end)
+        public MyVectoDisorderedr(T[] myVector, int start, int end)
         {
             CopyFrom(myVector, start, end);
         }
@@ -191,10 +192,40 @@ namespace Arethmetic
 
         #endregion
 
+        #region 遍历执行方法
+
+        public void Visit(Action<T> action)
+        {
+            for (int i = 0; i < _size; i++)
+            {
+                action(_elements[i]);
+            }
+        }
 
 
+        #endregion
+
+        #region 获取向量无序程度,递增为有序,逆序程度由逆序对数量判断
+
+        //int Disordered()
+        //{
+        //    int n = 0;
+
+        //    for (int i = 1; i < _size; i++)
+        //    {
+        //        if (_elements[i - 1] > _elements[i])
+        //        {
+        //            n++;
+        //        }
+        //    }
+        //    return n;
+               
+        //}
+
+        #endregion
 
 
+     
 
     }
 }
