@@ -123,7 +123,7 @@ namespace Arethmetic
 
         #endregion
 
-        #region 区间删除
+        #region 区间删除，从前往后往前走
 
         void Remove(int low, int hi)
         {
@@ -138,7 +138,19 @@ namespace Arethmetic
 
         #endregion
 
-        #region 区间查找
+        #region 单元素删除，调用区间删除接口
+
+        public T Remove(int rank)
+        {
+            var tmp = _elements[rank];
+            Remove(rank, rank + 1);
+            return tmp;
+        }
+
+
+        #endregion
+
+        #region 区间查找，为什么从后面往前查？
 
         int Find(T instance, int low, int high)
         {
@@ -155,6 +167,34 @@ namespace Arethmetic
 
 
         #endregion
+
+        #region 去重(唯一化)，低效版
+
+        int Deduplicate()
+        {
+            int oldsize = _size;
+            int last = 1;
+            while (last <= _size)
+            {
+                if (Find(_elements[last], 0, last) >= 0)
+                {
+                    Remove(last);
+                }
+                else
+                {
+                    last++;
+                }
+            }
+            return oldsize - _size;
+        }
+
+
+        #endregion
+
+
+
+
+
 
     }
 }
