@@ -1,0 +1,2 @@
+D:\MyCode\Github2020\Arethmetic\Arethmetic\Arethmetic\obj\Debug\Arethmetic.csprojAssemblyReference.cache
+D:\MyCode\Github2020\Arethmetic\Arethmetic\Arethmetic\obj\Debug\Arethmetic.csproj.CoreCompileInputs.cache

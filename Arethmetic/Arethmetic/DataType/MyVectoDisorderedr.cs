@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Arethmetic
 {
-    public class MyVectoDisorderedr<T>where T:class
+    public class MyVectoDisorderedr<T> where T:struct
     {
 
         #region Properties
@@ -15,22 +15,22 @@ namespace Arethmetic
         /// <summary>
         /// 默认大小
         /// </summary>
-        const int _defaultSize = 3;
+       protected const int _defaultSize = 3;
 
         /// <summary>
         /// 规模,有效规模
         /// </summary>
-        int _size;
+        protected int _size;
 
         /// <summary>
         /// 容量/物理空间大小
         /// </summary>
-        int _capasity;
+        protected int _capasity;
 
         /// <summary>
         /// 数据区
         /// </summary>
-        T[] _elements;
+        protected T[] _elements;
 
         #endregion
 
@@ -156,9 +156,9 @@ namespace Arethmetic
         int Find(T instance, int low, int high)
         {
             high--;
-            while (high<low)
+            while (high < low)
             {
-                if (instance == _elements[high])
+                if (instance.Equals(_elements[high]))
                 {
                     return high;
                 }
@@ -205,27 +205,10 @@ namespace Arethmetic
 
         #endregion
 
-        #region 获取向量无序程度,递增为有序,逆序程度由逆序对数量判断
-
-        //int Disordered()
-        //{
-        //    int n = 0;
-
-        //    for (int i = 1; i < _size; i++)
-        //    {
-        //        if (_elements[i - 1] > _elements[i])
-        //        {
-        //            n++;
-        //        }
-        //    }
-        //    return n;
-               
-        //}
-
-        #endregion
+  
 
 
-     
+
 
     }
 }
