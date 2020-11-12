@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncTask\MyThread.cs" />
     <Compile Include="DataType\MyVectoDisorderedr.cs" />
     <Compile Include="DataType\MyVerctorOrdered.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
